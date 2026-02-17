@@ -1,0 +1,126 @@
+{% extends 'base/base.html' %}
+
+{% block title %}О ресторане{% endblock %}
+
+{% block content %}
+<div class="row m-0 p-0 w-100">
+    <div class="col-12 p-0">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/static/img/galery_1.jpg" class="d-block w-100" alt="..."
+                         style="height: 450px; object-fit: cover">
+                </div>
+                <div class="carousel-item">
+                    <img src="/static/img/galery_2.jpg" class="d-block w-100" alt="..."
+                         style="height: 450px; object-fit: cover">
+                </div>
+                <div class="carousel-item">
+                    <img src="/static/img/galery_3.jpg" class="d-block w-100" alt="..."
+                         style="height: 450px; object-fit: cover">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center m-1">
+    <p class="fs-5 p-4">
+        Ресторан El Diablo находится на острове Ла Гриси в Испании и знаменит своей уникальной концепцией приготовления
+        пищи
+        на вулканической лаве. Открытый в 1970 году, он предлагает блюда, приготовленные на гриле, находящемся в кратере
+        действующего вулкана. Уникальная атмосфера и захватывающий вид делают его популярным местом для туристов и
+        местных
+        жителей.
+    </p>
+</div>
+
+<div class="row text-center m-0 d-flex w-100">
+    <section>
+        <div class="row justify-content-center mb-5" style="height:350px">
+            <div class="col-3">
+                <img src="/static/img/cozy.jpg" class="d-block w-100 h-100" alt="..." style="object-fit: cover">
+            </div>
+            <div class="col-4 text-start">
+                <h2 class="text-secondary">УЮТНАЯ АТМОСФЕРА</h2>
+                <p>Наша обстановка создана для того, чтобы вы могли наслаждаться каждым моментом. Ресторан располагает
+                    основным залом с панорамными окнами, откуда открывается потрясающий вид на лес и
+                    реку. Летом вы сможете насладиться свежим воздухом на просторной летней террасе — здесь каждая
+                    трапеза превращается в настоящий праздник для души. Если вам захочется немного отдохнуть, загляните
+                    в лобби отеля: здесь вы сможете выпить чашечку чая или кофе у камина, посмотреть кино на проекторе
+                    или почитать книгу из нашей уютной библиотеки.</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row justify-content-center mb-5">
+            <div class="col-4 text-start">
+                <h2 class="text-secondary">ЗАВТРАКИ С ДУШОЙ</h2>
+                <p>Каждое утро в нашем ресторане начинается с богатого и разнообразного завтрака, который входит в
+                    стоимость проживания. Начните свой день с ароматного кофе и свежеиспеченных круассанов, наслаждаясь
+                    атмосферой спокойствия и уюта.</p>
+            </div>
+            <div class="col-3" style="height:350px">
+                <img src="/static/img/breakfast.jpg" class="d-block w-100" alt="..."
+                     style="height: 100%; object-fit: cover">
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row justify-content-center mb-5">
+            <div class="col-3" style="height:350px">
+                <img src="/static/img/events.jpg" class="d-block w-100" alt="..."
+                     style="height: 100%; object-fit: cover">
+            </div>
+            <div class="col-4 text-start">
+                <h2 class="text-secondary">МЕСТО ДЛЯ ВАШИХ МЕРОПРИЯТИЙ</h2>
+                <p>Наш ресторан с комфортной посадкой на 40 мест и камерный зал на 35 мест
+                    — идеально подходят для проведения частных мероприятий. Мы рады предложить вам возможность
+                    организовать банкеты, корпоративы, дни рождения или любые другие торжества. Наша команда поможет вам
+                    создать индивидуальное меню и атмосферу, соответствующую вашему мероприятию. Мы гарантируем внимание
+                    к деталям и высокий уровень обслуживания, чтобы ваш праздник стал по-настоящему незабываемым.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="row d-flex flex-column align-items-center justify-content-cente m-0">
+    <div class="text-center mb-3 fs-1">Наша команда:</div>
+
+    <div id="carouselExample" class="carousel slide col-5" style="height:600px">
+        <div class="carousel-inner">
+            <div class="carousel-item active text-center">
+                <img src="/static/img/ceo.jpg" class="card-img" alt="..." style="height:600px; object-fit: cover">
+                <div class="card-img-overlay d-flex flex-column mb-3" style="justify-content: flex-end;">
+                    <h2 class="card-title text-white">Иванов Иван</h2>
+                    <p class="card-text text-white">Директор ресторана</p>
+                </div>
+            </div>
+            <div class="carousel-item text-center">
+                <img src="/static/img/administrator.jpg" class="card-img" alt="..."
+                     style="height:600px; object-fit: cover">
+                <div class="card-img-overlay d-flex flex-column mb-3" style="justify-content: flex-end;">
+                    <h2 class="card-title text-white">Иванова Анна</h2>
+                    <p class="card-text text-white">Администратор зала</p>
+                </div>
+            </div>
+            <div class="carousel-item text-center">
+                <img src="/static/img/chef.jpg" class="card-img" alt="..." style="height:600px; object-fit: cover">
+                <div class="card-img-overlay d-flex flex-column mb-3" style="justify-content: flex-end;">
+                    <h2 class="card-title text-white">Петров Петр</h2>
+                    <p class="card-text text-white">Шеф-повар</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+{% endblock %}
