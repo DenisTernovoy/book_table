@@ -1,4 +1,4 @@
-<header class="d-flex justify-content-center py-3 mb-4 border-bottom">
+<header class="d-flex justify-content-center py-3 mb-4 border-bottom sticky-top bg-white">
     <div class="row w-100">
         <div class="col">
             <a href="/"
@@ -11,7 +11,7 @@
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li class="nav-item"><a href="{% url 'booking:about' %}" class="btn btn-dark" aria-current="page">О ресторане</a></li>
                 <li class="nav-item"><a href="#" class="btn btn-dark">Меню</a></li>
-                <li class="nav-item"><a href="#" class="btn btn-dark">Бронирование</a></li>
+                <li class="nav-item"><a href="{% url 'booking:booking' %}" class="btn btn-dark">Бронирование</a></li>
             </ul>
         </div>
         <div class="col text-end">

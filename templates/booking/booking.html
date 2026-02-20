@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Бронирование{% endblock %}
+{% block content %}
+
+<div class="row w-100 justify-content-center">
+    <div class="card col-6 g-0">
+        <div class="card-header justify-content-center">
+            <p class="fs-4 m-0">Забронировать столик</p>
+        </div>
+        <div class="card-body">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

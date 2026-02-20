@@ -5,17 +5,17 @@
 {% block content %}
 <div class="row m-0 p-0 w-100">
     <div class="col-12 p-0">
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-bs-interval="3000">
                     <img src="/static/img/galery_1.jpg" class="d-block w-100" alt="..."
                          style="height: 450px; object-fit: cover">
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="3000">
                     <img src="/static/img/galery_2.jpg" class="d-block w-100" alt="..."
                          style="height: 450px; object-fit: cover">
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-bs-interval="3000">
                     <img src="/static/img/galery_3.jpg" class="d-block w-100" alt="..."
                          style="height: 450px; object-fit: cover">
                 </div>
@@ -37,7 +37,7 @@
 
 <div class="row text-center m-0 d-flex w-100">
     <section>
-        <div class="row justify-content-center mb-5" style="height:350px">
+        <div class="row justify-content-center mb-5">
             <div class="col-3">
                 <img src="/static/img/cozy.jpg" class="d-block w-100 h-100" alt="..." style="object-fit: cover">
             </div>
@@ -87,7 +87,7 @@
 <div class="row d-flex flex-column align-items-center justify-content-cente m-0">
     <div class="text-center mb-3 fs-1">Наша команда:</div>
 
-    <div id="carouselExample" class="carousel slide col-5" style="height:600px">
+    <div id="carouselExample" class="carousel slide col-5" style="height:600px" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active text-center">
                 <img src="/static/img/ceo.jpg" class="card-img" alt="..." style="height:600px; object-fit: cover">
