@@ -7,4 +7,12 @@ from config.forms import StyleFormMixin
 class BookingForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Booking
-        fields = "__all__"
+        fields = [
+            "quantity",
+            "date",
+            "time_from",
+            "time_to",
+            "customer",
+            "phone",
+            "comment",
+        ]

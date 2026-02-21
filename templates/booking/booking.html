@@ -3,14 +3,38 @@
 {% block title %}Бронирование{% endblock %}
 {% block content %}
 
-<div class="row w-100 justify-content-center">
+<div class="row w-100 justify-content-center" xmlns="http://www.w3.org/1999/html">
     <div class="card col-6 g-0">
+        {% csrf_token %}
         <div class="card-header justify-content-center">
             <p class="fs-4 m-0">Забронировать столик</p>
         </div>
-        <div class="card-body">
-            {% csrf_token %}
-            {{ form.as_p }}
+        <div class="card-body d-flex flex-column justify-content-center">
+            <div class="row">
+                <div class="col-6 d-flex justify-content-center">
+                    <p>Количество гостей: {{form.quantity}}</p>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                    <p>Дата: {{form.date}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 d-flex justify-content-center">
+                    <p>Время (с): {{form.time_from}}</p>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                    <p>Время (по): {{form.time_to}}</p>
+                </div>
+            </div>
+
+            <div>
+                <p>Ваше имя: {{form.customer}}</p>
+                <p>Ваш телефон: {{form.phone}}</p>
+                <p>Ваши пожелания: {{form.comment}}</p>
+            </div>
+
+            <button type="submit" class="btn btn-secondary">Забронировать</button>
         </div>
     </div>
 </div>
