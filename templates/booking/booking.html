@@ -1,42 +1,106 @@
 {% extends 'base/base.html' %}
 
+{% load static %}
+
 {% block title %}Бронирование{% endblock %}
 {% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div class="row w-100 justify-content-center" xmlns="http://www.w3.org/1999/html">
-    <div class="card col-6 g-0">
-        {% csrf_token %}
+    <div class="card col-4 g-0">
         <div class="card-header justify-content-center">
             <p class="fs-4 m-0">Забронировать столик</p>
         </div>
-        <div class="card-body d-flex flex-column justify-content-center">
-            <div class="row">
-                <div class="col-6 d-flex justify-content-center">
-                    <p>Количество гостей: {{form.quantity}}</p>
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="card-body d-flex flex-column justify-content-center">
+                <div class="row d-flex">
+                    <div class="col-6 d-flex flex-column justify-content-center">
+                        <p>Дата: {{form.date}}</p>
+                        <p>Время: {{form.time}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p style="width:207px">Количество гостей: {{form.quantity}}</p>
+                        <p style="width:207px">Столик: {{form.table}}</p>
+                    </div>
                 </div>
-                <div class="col-6 d-flex justify-content-center">
-                    <p>Дата: {{form.date}}</p>
+
+                <div id="form_container">
+                    <p>Ваше имя: {{form.customer}}</p>
+                    <p>Ваш телефон: {{form.phone}}</p>
+                    <p>Ваши пожелания: {{form.comment}}</p>
+                    <button type="submit" id="id_btn" class="btn btn-secondary w-100">Забронировать</button>
+                </div>
+
+                <div id="message_container">
+                    <p class="m-2">Пожалуйста, сообщите менеджеру о необходимости бронирования большего количества столиков.</p>
                 </div>
             </div>
+        </form>
 
-            <div class="row">
-                <div class="col-6 d-flex justify-content-center">
-                    <p>Время (с): {{form.time_from}}</p>
-                </div>
-                <div class="col-6 d-flex justify-content-center">
-                    <p>Время (по): {{form.time_to}}</p>
-                </div>
-            </div>
-
-            <div>
-                <p>Ваше имя: {{form.customer}}</p>
-                <p>Ваш телефон: {{form.phone}}</p>
-                <p>Ваши пожелания: {{form.comment}}</p>
-            </div>
-
-            <button type="submit" class="btn btn-secondary">Забронировать</button>
-        </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        // Функция для загрузки доступных столиков
+        function loadAvailableTables() {
+            var date = $('#id_date').val();
+            var time = $('#id_time').val();
+            var quantity = $('#id_quantity').val();
+
+            if (parseInt(quantity) > 6) {
+                $('#form_container').hide(); // Скрываем существующий шаблон формы
+                $('#message_container').show();
+            } else {
+                $('#form_container').show(); // Скрываем существующий шаблон формы
+                $('#message_container').hide();
+            }
+
+            if (date && time && quantity) {
+                $.ajax({
+                    url: '{% url "booking:available_tables" %}',
+                    data: {
+                        'date': date,
+                        'time': time,
+                        'quantity': quantity
+                    },
+                    success: function(data) {
+                        $('#id_table').empty();
+                        $.each(data, function(index, table) {
+                            $('#id_table').append($('<option>', {
+                                value: table.id,
+                                text: table.number
+                            }));
+                        });
+                        $('#id_table').prop('disabled', false); // Разблокируем выбор столика
+                                // Проверка: есть ли значения в #id_table
+                        if ($('#id_table').children('option').length === 0) {
+                            // Дополнительное условие если #id_table пуст
+                            $('#id_table').empty().append('<option value="">Столиков нет</option>');
+                            $('#id_table').prop('disabled', true); // Блокируем выбор столика
+                            $('#id_btn').prop('disabled', true); // Блокируем кнопку "Забронировать"
+                        } else {
+                            $('#id_btn').prop('disabled', false); // Разблокируем кнопку "Забронировать"
+                        }
+                    }
+                });
+            } else {
+                $('#id_table').prop('disabled', true); // Блокируем выбор столика
+            }
+        }
+
+        // Загружаем доступные столики при изменении даты и времени
+        $('#id_date, #id_time, #id_quantity').change(loadAvailableTables);
+
+        $('#form_container').show();
+        $('#message_container').hide();  // Скрываем контейнер сообщения изначально
+
+        // Блокируем выбор столика изначально
+        $('#id_table').prop('disabled', true);
+        $('#id_btn').prop('disabled', true); // Блокируем кнопку "Забронировать"
+    });
+</script>
 
 {% endblock %}

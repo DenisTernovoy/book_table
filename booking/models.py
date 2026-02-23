@@ -36,12 +36,11 @@ class Booking(models.Model):
         ("Closed", "Закрыта"),
         ("Cancelled", "Отменена"),
     ]
-    table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
+    table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True, blank=True)
 
-    quantity = models.PositiveSmallIntegerField("Количество гостей", default=1)
+    quantity = models.PositiveSmallIntegerField("Количество гостей", default=2)
     date = models.DateField(verbose_name="Дата")
-    time_from = models.TimeField(verbose_name="Время начала")
-    time_to = models.TimeField(verbose_name="Время окончания")
+    time = models.TimeField(verbose_name="Время")
 
     customer = models.CharField(max_length=50, verbose_name="Имя")
     phone = models.CharField(max_length=20, verbose_name="Телефон")
@@ -50,13 +49,13 @@ class Booking(models.Model):
     )
 
     price = models.PositiveIntegerField(verbose_name="Стоимость", default=0)
-    status = models.CharField(choices=STATUSES, verbose_name="Статус")
+    status = models.CharField(choices=STATUSES, verbose_name="Статус", default="Open")
 
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.table}-{self.date}-{self.time_from}-{self.time_to}"
+        return f"{self.customer}-{self.date}-{self.time}"
 
     class Meta:
         verbose_name = "Бронь"
