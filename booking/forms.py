@@ -6,12 +6,21 @@ from django.core.exceptions import ValidationError
 from booking.models import Booking
 from config.forms import StyleFormMixin
 
-today = datetime.now()
-
 
 class BookingForm(StyleFormMixin, forms.ModelForm):
-    min_time = time(10, 0)  # 10:00
-    max_time = time(19, 0)  # 19:00
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.today = datetime.now()
+        self.fields["table"].widget.attrs.update({"placeholder": "Выберите дату"})
+        self.fields["date"].widget.attrs.update(
+            {"min": self.today.date().replace(day=self.today.day + 1)}
+        )
+        self.fields["quantity"].widget.attrs.update({"min": 2})
+
+    min_time = time(11, 0)  # 11:00
+    max_time = time(20, 0)  # 20:00
 
     # Генерация списка времени с интервалом в 1 час
     time_options = []
@@ -32,7 +41,6 @@ class BookingForm(StyleFormMixin, forms.ModelForm):
                 "type": "date",
                 "class": "form-control",
                 "style": "width:207px",
-                "min": today.date().replace(day=today.day + 1),
             }
         ),
         input_formats=["%Y-%m-%d"],
